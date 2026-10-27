@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Kelas & Materi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --brand-red: #EE1C25;
+        }
+        .bg-brand { background-color: var(--brand-red); }
+        .text-brand { color: var(--brand-red); }
+        .border-brand { border-color: var(--brand-red); }
+        .hover-bg-brand:hover { background-color: var(--brand-red); }
+        .hover-border-brand:hover { border-color: var(--brand-red); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-brand/10 rounded-xl border border-brand/20">
+                    <i data-lucide="book-open" class="w-6 h-6 text-brand"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Portal Materi Kelas</h1>
+                    <p class="text-xs text-slate-400">Daftar Materi & Tugas Pembelajaran</p>
+                </div>
+            </div>
+            <!-- Search & Stats -->
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+                <div class="relative w-full sm:w-64">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" placeholder="Cari materi..." 
+                        class="w-full bg-slate-800 text-sm rounded-lg pl-9 pr-4 py-2 text-slate-200 border border-slate-700 focus:outline-none focus:border-brand">
+                </div>
+                <div class="bg-slate-800 text-xs px-3 py-2 rounded-lg border border-slate-700 whitespace-nowrap">
+                    Total: <span id="itemCount" class="font-bold text-brand">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full">
+        <!-- Banner Informasi -->
+        <div class="mb-8 p-4 rounded-xl bg-gradient-to-r from-red-950/40 via-slate-900 to-slate-900 border border-brand/30 flex items-start gap-3">
+            <i data-lucide="sparkles" class="w-5 h-5 text-brand shrink-0 mt-0.5"></i>
+            <div class="text-xs sm:text-sm text-slate-300">
+                Materi di bawah ini diperbarui secara otomatis dari repositori. Silakan pilih kelas atau modul yang ingin kamu pelajari.
+            </div>
+        </div>
+
+        <!-- Container Tempat Cards Materi Ditampilkan -->
+        <div id="contentContainer" class="space-y-8">
+            <!-- Loading State -->
+            <div id="loadingState" class="flex flex-col items-center justify-center py-16 gap-3 text-slate-400">
+                <i data-lucide="loader-2" class="w-8 h-8 animate-spin text-brand"></i>
+                <p class="text-sm">Memuat daftar materi terbaru...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900 py-6 text-center text-xs text-slate-500">
+        <p>© Portal Pembelajaran Dinamis. Ditenagai oleh GitHub API.</p>
+    </footer>
+
+    <!-- Script Pengambil Data Otomatis -->
+    <script>
+        // ==========================================
+        // KONFIGURASI REPOSITORI (SESUAIKAN DI SINI)
+        // ==========================================
+        const REPO_OWNER = 'USERNAME_GITHUB_KAMU'; // Contoh: 'bbckarawang'
+        const REPO_NAME = 'NAMA_REPOSITORY_KAMU';  // Contoh: 'kelas-interaktif'
+        // ==========================================
+
+        let allFiles = [];
+
+        async function fetchRepoContents(path = '') {
+            const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Gagal mengambil data: ${response.statusText}`);
+            return await response.json();
+        }
+
+        async function scanAllFiles(path = '') {
+            let results = [];
+            try {
+                const items = await fetchRepoContents(path);
+                for (const item of items) {
+                    if (item.type === 'file' && item.name.endsWith('.html') && item.name !== 'index.html') {
+                        results.push({
+                            name: item.name,
+                            path: item.path,
+                            download_url: item.download_url,
+                            // Membuat nama tampilan dari nama file
+                            title: formatTitle(item.name),
+                            folder: path || 'Utama'
+                        });
+                    } else if (item.type === 'dir') {
+                        // Memindai sub-folder secara rekursif
+                        const subFiles = await scanAllFiles(item.path);
+                        results = results.concat(subFiles);
+                    }
+                }
+            } catch (error) {
+                console.error('Error scanning repository:', error);
+            }
+            return results;
+        }
+
+        function formatTitle(filename) {
+            return filename
+                .replace('.html', '')
+                .replace(/[-_]/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase());
+        }
+
+        function renderFiles(files) {
+            const container = document.getElementById('contentContainer');
+            document.getElementById('itemCount').textContent = files.length;
+
+            if (files.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-slate-500">
+                        <i data-lucide="file-x" class="w-12 h-12 mx-auto mb-3 stroke-1"></i>
+                        <p class="text-base font-medium">Belum ada file materi (.html) yang ditemukan.</p>
+                        <p class="text-xs mt-1">Unggah file HTML baru ke repositori untuk menampilkannya di sini.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            // Grouping berdasarkan folder
+            const grouped = files.reduce((acc, file) => {
+                const folderName = file.folder === 'Utama' ? 'Materi Utama' : `Folder: ${file.folder}`;
+                if (!acc[folderName]) acc[folderName] = [];
+                acc[folderName].push(file);
+                return acc;
+            }, {});
+
+            let html = '';
+            for (const [groupName, groupFiles] of Object.entries(grouped)) {
+                html += `
+                    <div class="space-y-4">
+                        <h2 class="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center gap-2">
+                            <i data-lucide="folder" class="w-4 h-4 text-brand"></i> ${groupName}
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                `;
+
+                groupFiles.forEach(file => {
+                    html += `
+                        <a href="${file.path}" class="group block p-5 bg-slate-900 border border-slate-800 rounded-xl hover:border-brand/60 hover:bg-slate-850 transition-all duration-200 shadow-sm relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-brand/5 rounded-bl-full pointer-events-none group-hover:bg-brand/10 transition-all"></div>
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="p-2 bg-slate-800 rounded-lg group-hover:bg-brand/20 transition-colors">
+                                    <i data-lucide="file-code" class="w-5 h-5 text-brand"></i>
+                                </div>
+                                <span class="text-xs text-slate-500 group-hover:text-brand flex items-center gap-1 font-medium transition-colors">
+                                    Buka <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                                </span>
+                            </div>
+                            <h3 class="font-semibold text-slate-100 group-hover:text-white line-clamp-2">${file.title}</h3>
+                            <p class="text-xs text-slate-400 mt-2 font-mono truncate">${file.path}</p>
+                        </a>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        // Fitur Pencarian Dinamis
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = allFiles.filter(file => 
+                file.title.toLowerCase().includes(query) || 
+                file.path.toLowerCase().includes(query)
+            );
+            renderFiles(filtered);
+        });
+
+        // Inisialisasi Aplikasi
+        async function init() {
+            allFiles = await scanAllFiles();
+            renderFiles(allFiles);
+        }
+
+        init();
+    </script>
+</body>
+</html>
