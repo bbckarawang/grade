@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentation Skills Pre-Test</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Styling khusus untuk cetak/PDF */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-container {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+            }
+            .option-box {
+                border: 1px solid #cbd5e1 !important;
+                background-color: #ffffff !important;
+            }
+            input[type="radio"]:checked + span {
+                font-weight: bold !important;
+                text-decoration: underline;
+            }
+            .page-break {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-6 sm:p-10 border border-slate-200 print-container">
+        
+        <!-- Header Document -->
+        <header class="border-b-2 border-slate-200 pb-6 mb-8 flex justify-between items-start">
+            <div>
+                <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">
+                    Assessment Tool
+                </span>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                    Presentation Skills Pre-Test
+                </h1>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                    Silakan isi identitas dan pilih jawaban yang paling tepat untuk setiap pertanyaan.
+                </p>
+            </div>
+            
+            <!-- Tombol Print (no-print) -->
+            <div class="no-print flex gap-2">
+                <button onclick="window.print()" class="bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold py-2.5 px-5 rounded-xl shadow-md hover:shadow-indigo-500/20 transition-all text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i> Cetak / Save PDF
+                </button>
+            </div>
+        </header>
+
+        <!-- Form Pretest -->
+        <form id="pretest-form">
+            
+            <!-- Identitas Peserta -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Nama Lengkap</label>
+                    <input type="text" placeholder="Masukkan nama Anda" required class="w-full p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Tanggal</label>
+                    <input type="date" required id="test-date" class="w-full p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
+                </div>
+            </div>
+
+            <!-- Daftar Pertanyaan -->
+            <div class="space-y-6">
+                
+                <!-- Soal 1 -->
+                <div class="page-break border-b border-slate-100 pb-5">
+                    <p class="font-semibold text-slate-800 text-base mb-3">
+                        1. What do you think about Persuasive?
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="a" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">a. Keputusan</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">b. Ajakan</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">c. Himbauan</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">d. Penyampaian</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="page-break border-b border-slate-100 pb-5">
+                    <p class="font-semibold text-slate-800 text-base mb-3">
+                        2. The meaning of 'present', except?
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="a" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">a. Hadir</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">b. Kado</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">c. Menyampaikan</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">d. Mendatang</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="page-break border-b border-slate-100 pb-5">
+                    <p class="font-semibold text-slate-800 text-base mb-3">
+                        3. What is a performance that is performed, created, or spoken live on the spot without any preparation called?
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="a" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">a. Impromptu</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">b. Extemporaneous</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">c. Manuscript</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">d. Memorized</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Soal 4 -->
+                <div class="page-break border-b border-slate-100 pb-5">
+                    <p class="font-semibold text-slate-800 text-base mb-3">
+                        4. The duration of a good presentation depends greatly on the purpose, type of event, and the audience's attention span. According to psychological studies, the average human attention span begins to decline drastically after?
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="a" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">a. 5 - 10 mins</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">b. 10 - 15 mins</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">c. 15 - 20 mins</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">d. 20 - 30 mins</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Soal 5 -->
+                <div class="page-break border-b border-slate-100 pb-5">
+                    <p class="font-semibold text-slate-800 text-base mb-3">
+                        5. Do All Presentations Need a Hook?
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="a" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">a. Yes</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="b" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">b. No</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="c" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">c. Maybe</span>
+                        </label>
+                        <label class="option-box flex items-center p-3 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="d" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500">
+                            <span class="ml-3 text-sm text-slate-700">d. Based on its type</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Action Buttons (no-print) -->
+            <div class="no-print mt-8 flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-slate-200">
+                <button type="reset" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 transition-all text-sm font-semibold">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Reset Jawaban
+                </button>
+                <button type="button" onclick="window.print()" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2.5 px-6 rounded-xl shadow-md transition-all text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-pdf"></i> Save / Print PDF
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script>
+        // Set tanggal default ke hari ini
+        document.getElementById('test-date').valueAsDate = new Date();
+    </script>
+</body>
+</html>
