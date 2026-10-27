@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Presentation Hooks Mastery Quiz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.1), 0 8px 10px -6px rgba(79, 70, 229, 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header Banner -->
+    <header class="gradient-header text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 relative shadow-lg">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3 backdrop-blur-sm">
+                HR Communication & Presentation Skills Module
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
+                HR Presentation Hooks Mastery Quiz
+            </h1>
+            <p class="text-indigo-100 text-sm sm:text-base max-w-2xl mx-auto font-light">
+                Test your mastery in designing high-impact Rhetorical Question Hooks tailored for HR audiences, Management, and Board of Directors.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12 flex-grow w-full">
+        
+        <!-- Sticky Progress Bar Card -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-md mb-8 border border-slate-100 sticky top-4 z-30 transition-all duration-300">
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-2 gap-2">
+                <span class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-indigo-600"></i> Completion Progress
+                </span>
+                <span id="progress-text" class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">
+                    0 of 10 Questions Answered
+                </span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-500 w-0"></div>
+            </div>
+        </div>
+
+        <form id="quiz-form" onsubmit="event.preventDefault(); submitQuiz();">
+            
+            <!-- SECTION A: MULTIPLE CHOICE -->
+            <div class="mb-10">
+                <div class="flex items-center gap-3 mb-6 pb-2 border-b-2 border-indigo-500">
+                    <div class="bg-indigo-600 text-white font-bold w-8 h-8 rounded-lg flex items-center justify-center">A</div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Section A: Multiple Choice (Hook Analysis)</h2>
+                        <p class="text-xs text-slate-500">Select the best option (+20 points per correct question)</p>
+                    </div>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q1">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">Question 1</span>
+                        <span class="text-xs text-slate-400 font-medium">Weight: 20 Points</span>
+                    </div>
+                    <p class="font-semibold text-slate-800 text-base sm:text-lg mb-4">
+                        An HR Officer wants to present the new Work-From-Anywhere (WFA) policy to the Board of Directors. Which rhetorical question hook is the most impactful?
+                    </p>
+                    <div class="space-y-3">
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="A" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">A.</strong> "Do you know what WFA stands for?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="B" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">B.</strong> "What if we could reduce office operational costs by 30% while simultaneously boosting employee work satisfaction?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="C" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">C.</strong> "Who here likes working from home?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q1" value="D" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">D.</strong> "Why is WFA so popular among Gen Z nowadays?"</span>
+                        </label>
+                    </div>
+                    <!-- Feedback Box -->
+                    <div id="feedback-q1" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q2">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">Question 2</span>
+                        <span class="text-xs text-slate-400 font-medium">Weight: 20 Points</span>
+                    </div>
+                    <p class="font-semibold text-slate-800 text-base sm:text-lg mb-4">
+                        Why is a rhetorical question like: <em>"Did you know that HRD stands for Human Resources Department?"</em> <strong>INEFFECTIVE</strong> as a presentation hook?
+                    </p>
+                    <div class="space-y-3">
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="A" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">A.</strong> Because it is too long to pronounce.</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="B" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">B.</strong> Because it asks about a common fact that everyone already knows (fails to spark curiosity or emotional connection).</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="C" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">C.</strong> Because it does not use advanced vocabulary.</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q2" value="D" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">D.</strong> Because rhetorical questions should never be used in HR presentations.</span>
+                        </label>
+                    </div>
+                    <div id="feedback-q2" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q3">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">Question 3</span>
+                        <span class="text-xs text-slate-400 font-medium">Weight: 20 Points</span>
+                    </div>
+                    <p class="font-semibold text-slate-800 text-base sm:text-lg mb-4">
+                        Which of the following represents a "challenging the status quo" rhetorical question hook in HRD?
+                    </p>
+                    <div class="space-y-3">
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="A" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">A.</strong> "What time do our employees usually start feeling sleepy?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="B" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">B.</strong> "How many new employees joined us this month?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="C" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">C.</strong> "What if the 2-week onboarding process we take pride in is actually the main reason 40% of new hires leave in their first month?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q3" value="D" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">D.</strong> "Who is responsible for filling out the daily attendance form?"</span>
+                        </label>
+                    </div>
+                    <div id="feedback-q3" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q4">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">Question 4</span>
+                        <span class="text-xs text-slate-400 font-medium">Weight: 20 Points</span>
+                    </div>
+                    <p class="font-semibold text-slate-800 text-base sm:text-lg mb-4">
+                        During a presentation on Employee Mental Health & Burnout, an HR Manager opens with: <em>"When was the last time you truly had a restful sleep without worrying about work emails over the weekend?"</em> What is the primary objective of this rhetorical question?
+                    </p>
+                    <div class="space-y-3">
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="A" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">A.</strong> To survey the audience's sleep schedule.</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="B" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">B.</strong> To criticize employees who dislike working hard.</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="C" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">C.</strong> To build empathy and an emotional connection with the audience.</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q4" value="D" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">D.</strong> To identify who frequently works overtime on weekends.</span>
+                        </label>
+                    </div>
+                    <div id="feedback-q4" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q5">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-md">Question 5</span>
+                        <span class="text-xs text-slate-400 font-medium">Weight: 20 Points</span>
+                    </div>
+                    <p class="font-semibold text-slate-800 text-base sm:text-lg mb-4">
+                        In an Upskilling Training session for line managers, which rhetorical question is most effective in highlighting the importance of coaching?
+                    </p>
+                    <div class="space-y-3">
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="A" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">A.</strong> "Why does your team keep making the same mistakes if you remain a firefighter instead of becoming their coach?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="B" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">B.</strong> "Who knows the difference between coaching and mentoring?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="C" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">C.</strong> "Have you read the coaching manual we distributed yesterday?"</span>
+                        </label>
+                        <label class="option-label flex items-center p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:border-indigo-300 hover:bg-slate-50 transition-all">
+                            <input type="radio" name="q5" value="D" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500" onchange="updateProgress()">
+                            <span class="ml-3 text-sm text-slate-700"><strong class="mr-1">D.</strong> "How many team meetings do you conduct per week?"</span>
+                        </label>
+                    </div>
+                    <div id="feedback-q5" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+            </div>
+
+            <!-- SECTION B: CASE STUDIES & HOOK CONSTRUCTION -->
+            <div class="mb-10">
+                <div class="flex items-center gap-3 mb-6 pb-2 border-b-2 border-purple-500">
+                    <div class="bg-purple-600 text-white font-bold w-8 h-8 rounded-lg flex items-center justify-center">B</div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Section B: Case Studies & Hook Construction</h2>
+                        <p class="text-xs text-slate-500">Type your response below for self-evaluation against model answers</p>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q6">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-md">Question 6 (Case Study)</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 text-sm text-slate-700">
+                        <strong class="text-slate-900">Case Scenario:</strong> HR launched a new LMS (Learning Management System), but employee participation remains very low.<br>
+                        <strong>Two Hook Options:</strong><br>
+                        • <em>Hook 1:</em> "Did you know that we launched a new LMS platform last month?"<br>
+                        • <em>Hook 2:</em> "How many promotion opportunities have slipped away simply because we felt we didn't have time to learn something new?"
+                    </div>
+                    <p class="font-semibold text-slate-800 text-sm sm:text-base mb-3">
+                        Question: Which hook is more effective? Provide 1 short reason to justify your answer.
+                    </p>
+                    <textarea name="q6" rows="3" class="w-full p-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm transition-all" placeholder="Write your evaluation and reason here..." oninput="updateProgress()"></textarea>
+                    <div id="feedback-q6" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q7">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-md">Question 7 (Reframing Statement)</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 text-sm text-slate-700">
+                        <strong>Original Statement:</strong> "Today, I will present on compensation gaps that trigger dissatisfaction among staff members."
+                    </div>
+                    <p class="font-semibold text-slate-800 text-sm sm:text-base mb-3">
+                        Task: Convert the plain opening statement above into an engaging rhetorical question hook!
+                    </p>
+                    <textarea name="q7" rows="3" class="w-full p-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm transition-all" placeholder="Write your creative rhetorical question hook..." oninput="updateProgress()"></textarea>
+                    <div id="feedback-q7" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 8 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q8">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-md">Question 8 (Reframing Statement)</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 text-sm text-slate-700">
+                        <strong>Original Statement:</strong> "Our topic today is the importance of providing continuous feedback, rather than relying solely on year-end evaluations."
+                    </div>
+                    <p class="font-semibold text-slate-800 text-sm sm:text-base mb-3">
+                        Task: Craft 1 compelling rhetorical question hook to open this topic in front of Team Leads!
+                    </p>
+                    <textarea name="q8" rows="3" class="w-full p-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm transition-all" placeholder="Write your creative rhetorical question hook..." oninput="updateProgress()"></textarea>
+                    <div id="feedback-q8" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 9 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q9">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-md">Question 9 (Data-Driven Hook)</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 text-sm text-slate-700">
+                        <strong>HR Data Fact:</strong> 65% of candidates reject job offers due to an overly lengthy and complicated recruitment process (exceeding 4 interview rounds).
+                    </div>
+                    <p class="font-semibold text-slate-800 text-sm sm:text-base mb-3">
+                        Task: Craft a rhetorical question hook integrating the fact above for a recruitment process redesign proposal to the Board of Directors!
+                    </p>
+                    <textarea name="q9" rows="3" class="w-full p-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm transition-all" placeholder="Write your data-driven rhetorical question hook..." oninput="updateProgress()"></textarea>
+                    <div id="feedback-q9" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+                <!-- Question 10 -->
+                <div class="question-card bg-white rounded-2xl p-6 mb-6 border border-slate-200/80 custom-shadow transition-all" id="card-q10">
+                    <div class="flex items-start justify-between gap-4 mb-3">
+                        <span class="text-xs font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-md">Question 10 (Risk Analysis)</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-4 text-sm text-slate-700">
+                        If an HR professional presents on <em>Salary Increment</em> to all employees and opens with: <em>"Who here feels that their salary is not enough?"</em>
+                    </div>
+                    <p class="font-semibold text-slate-800 text-sm sm:text-base mb-3">
+                        Why is this rhetorical question dangerous? Explain its impact on the audience!
+                    </p>
+                    <textarea name="q10" rows="3" class="w-full p-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm transition-all" placeholder="Write your risk analysis here..." oninput="updateProgress()"></textarea>
+                    <div id="feedback-q10" class="hidden mt-4 p-4 rounded-xl border text-sm"></div>
+                </div>
+
+            </div>
+
+            <!-- Submit Button Card -->
+            <div id="submit-card" class="bg-white rounded-2xl p-6 shadow-md border border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div>
+                    <h3 class="font-bold text-slate-800">Ready to Submit?</h3>
+                    <p class="text-xs text-slate-500">Click the button to evaluate your Section A score and view explanations for all questions.</p>
+                </div>
+                <button type="submit" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:shadow-indigo-500/25 transition-all duration-200 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Submit & View Score
+                </button>
+            </div>
+        </form>
+
+        <!-- SCORE DISPLAY BANNER (Hidden by default) -->
+        <div id="result-score-card" class="hidden bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-indigo-100 mb-10 text-center animate-fade-in">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-indigo-100 text-indigo-600 text-3xl mb-4">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-1">Quiz Evaluation Result</h2>
+            <p class="text-xs text-slate-500 mb-6">Automatic Score for Section A (Multiple Choice)</p>
+            
+            <div class="inline-block bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl px-8 py-4 shadow-lg mb-6">
+                <div class="text-xs font-semibold uppercase tracking-widest text-indigo-100 mb-1">Section A Total Score</div>
+                <div class="text-4xl sm:text-5xl font-black" id="total-score">0 / 100</div>
+            </div>
+
+            <p id="score-message" class="text-sm font-medium text-slate-700 max-w-lg mx-auto mb-6">
+                <!-- Text message dynamically inserted -->
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 border-t border-slate-100 pt-6">
+                <button onclick="resetQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 px-6 rounded-xl transition-all text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Retake Quiz
+                </button>
+                <a href="#card-q1" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold py-2.5 px-6 rounded-xl transition-all text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-eye"></i> Review Key & Explanations
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 text-center text-xs">
+        <div class="max-w-4xl mx-auto px-4">
+            <p>&copy; 2026 HR Interactive Learning Module. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Quiz Logic -->
+    <script>
+        // Data Kunci Jawaban & Pembahasan dalam Bahasa Inggris
+        const quizData = {
+            q1: {
+                correct: 'B',
+                explanation: '<strong>Explanation:</strong> Option B directly highlights strategic benefits sought by the Board of Directors (cost efficiency + employee productivity). Executive boards focus on ROI and business impact rather than acronym definitions (A), employee preferences (C), or demographic trends (D).'
+            },
+            q2: {
+                correct: 'B',
+                explanation: '<strong>Explanation:</strong> A strong rhetorical question must provoke deep thought or curiosity, rather than merely stating basic definitions or common knowledge that everyone already understands.'
+            },
+            q3: {
+                correct: 'C',
+                explanation: '<strong>Explanation:</strong> Option C directly challenges long-held assumptions (the pride in a 2-week onboarding process) by exposing how it might actually be driving a 40% first-month turnover rate.'
+            },
+            q4: {
+                correct: 'C',
+                explanation: '<strong>Explanation:</strong> This question is crafted to build empathy and a personal emotional connection with the audience regarding the burnout and fatigue experienced over weekends.'
+            },
+            q5: {
+                correct: 'A',
+                explanation: '<strong>Explanation:</strong> Using the contrast between being a "firefighter" vs. a "coach" directly hits the core pain point of line managers who spend too much time fixing recurring team errors.'
+            },
+            q6: {
+                key: 'Hook 2 is significantly more effective.',
+                explanation: '<strong>Explanation & Guide:</strong> Hook 1 merely asks about a fact (dull yes/no response with no emotional resonance). Hook 2 appeals to employees\' <em>self-interest</em> regarding career progression and missed opportunities.'
+            },
+            q7: {
+                key: 'Sample Model Answer:',
+                sample: '"Have you ever felt like you worked your heart out, only to find out your peer receives higher remuneration for the exact same job?"',
+                explanation: '<strong>Explanation:</strong> An effective hook reframes passive statements about "compensation gaps" into an empathetic, real-world experience that triggers fairness emotions.'
+            },
+            q8: {
+                key: 'Sample Model Answer:',
+                sample: '"How would you feel if your performance across 12 full months was evaluated based solely on a single mistake you made in December?"',
+                explanation: '<strong>Explanation:</strong> Connects with Team Leads by placing them in the shoes of employees whose annual contribution gets judged by a single recent error.'
+            },
+            q9: {
+                key: 'Sample Model Answer:',
+                sample: '"What if the real reason we keep losing top talent isn\'t that competitors pay more, but because we force them to wait too long in our recruitment process?"',
+                explanation: '<strong>Explanation:</strong> Smoothly incorporates the 65% candidate rejection stat due to lengthy processes (>4 interview rounds) directly into executive decision-making criteria.'
+            },
+            q10: {
+                key: 'Risk Analysis & Explanation:',
+                explanation: '<strong>Explanation & Guide:</strong> This question triggers public hostility, mass negative sentiment, and destructive emotional priming (provoking toxicity) before any constructive solution or proposal can be presented. Rhetorical questions should encourage professional reflection, not mass complaints.'
+            }
+        };
+
+        // Update progress bar counter
+        function updateProgress() {
+            let answeredCount = 0;
+            
+            // Check Part A
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected) answeredCount++;
+            }
+
+            // Check Part B
+            for (let i = 6; i <= 10; i++) {
+                const text = document.querySelector(`textarea[name="q${i}"]`).value.trim();
+                if (text.length > 0) answeredCount++;
+            }
+
+            // Calculate percentage
+            const percentage = (answeredCount / 10) * 100;
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+            document.getElementById('progress-text').innerText = `${answeredCount} of 10 Questions Answered`;
+        }
+
+        // Submit Quiz Function
+        function submitQuiz() {
+            let scoreA = 0;
+
+            // Process Section A
+            for (let i = 1; i <= 5; i++) {
+                const qKey = `q${i}`;
+                const selectedOpt = document.querySelector(`input[name="${qKey}"]:checked`);
+                const feedbackEl = document.getElementById(`feedback-${qKey}`);
+                const cardEl = document.getElementById(`card-${qKey}`);
+
+                feedbackEl.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-200', 'text-emerald-800', 'bg-rose-50', 'border-rose-200', 'text-rose-800');
+
+                if (selectedOpt) {
+                    const userAns = selectedOpt.value;
+                    if (userAns === quizData[qKey].correct) {
+                        scoreA += 20;
+                        feedbackEl.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-900');
+                        feedbackEl.innerHTML = `<div class="font-bold text-emerald-700 mb-1"><i class="fa-solid fa-circle-check mr-1"></i> Correct Answer! (+20 Points)</div> ${quizData[qKey].explanation}`;
+                        cardEl.classList.add('border-emerald-300');
+                    } else {
+                        feedbackEl.classList.add('bg-rose-50', 'border-rose-200', 'text-rose-900');
+                        feedbackEl.innerHTML = `<div class="font-bold text-rose-700 mb-1"><i class="fa-solid fa-circle-xmark mr-1"></i> Incorrect Answer (Correct Key: ${quizData[qKey].correct})</div> ${quizData[qKey].explanation}`;
+                        cardEl.classList.add('border-rose-300');
+                    }
+                } else {
+                    feedbackEl.classList.add('bg-amber-50', 'border-amber-200', 'text-amber-900');
+                    feedbackEl.innerHTML = `<div class="font-bold text-amber-700 mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Unanswered (Correct Key: ${quizData[qKey].correct})</div> ${quizData[qKey].explanation}`;
+                }
+            }
+
+            // Process Section B
+            for (let i = 6; i <= 10; i++) {
+                const qKey = `q${i}`;
+                const userText = document.querySelector(`textarea[name="${qKey}"]`).value.trim();
+                const feedbackEl = document.getElementById(`feedback-${qKey}`);
+                const cardEl = document.getElementById(`card-${qKey}`);
+
+                feedbackEl.classList.remove('hidden');
+                feedbackEl.classList.add('bg-purple-50', 'border-purple-200', 'text-purple-900');
+
+                let content = `<div class="font-bold text-purple-800 mb-1"><i class="fa-solid fa-book-bookmark mr-1"></i> Model Answer & Evaluation Guide:</div>`;
+                
+                if (quizData[qKey].key) {
+                    content += `<p class="font-semibold text-slate-800 mb-1">${quizData[qKey].key}</p>`;
+                }
+                if (quizData[qKey].sample) {
+                    content += `<p class="italic text-purple-950 mb-2 bg-white/70 p-2.5 rounded-lg border border-purple-100">${quizData[qKey].sample}</p>`;
+                }
+                content += `<div>${quizData[qKey].explanation}</div>`;
+
+                if (userText === '') {
+                    content += `<div class="mt-2 text-xs text-amber-600 font-medium"><i class="fa-solid fa-info-circle"></i> Note: You did not submit a written response.</div>`;
+                }
+
+                feedbackEl.innerHTML = content;
+                cardEl.classList.add('border-purple-300');
+            }
+
+            // Display Score Card
+            const scoreCard = document.getElementById('result-score-card');
+            const totalScoreEl = document.getElementById('total-score');
+            const messageEl = document.getElementById('score-message');
+
+            totalScoreEl.innerText = `${scoreA} / 100`;
+
+            if (scoreA === 100) {
+                messageEl.innerText = "Outstanding! You possess an exceptional analytical mindset for HR presentation hooks.";
+            } else if (scoreA >= 60) {
+                messageEl.innerText = "Great job! You have a solid grasp of HR hooks. Review the incorrect items below to further sharpen your skills.";
+            } else {
+                messageEl.innerText = "Keep practicing! Review the detailed explanations below to refine your approach to crafting impactful HR hooks.";
+            }
+
+            scoreCard.classList.remove('hidden');
+
+            // Scroll to Score Display smoothly
+            scoreCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Reset Quiz Function
+        function resetQuiz() {
+            document.getElementById('quiz-form').reset();
+            
+            // Hide feedback boxes & reset card borders
+            for (let i = 1; i <= 10; i++) {
+                const feedbackEl = document.getElementById(`feedback-q${i}`);
+                const cardEl = document.getElementById(`card-q${i}`);
+                if (feedbackEl) feedbackEl.classList.add('hidden');
+                if (cardEl) {
+                    cardEl.classList.remove('border-emerald-300', 'border-rose-300', 'border-purple-300');
+                }
+            }
+
+            // Hide result card
+            document.getElementById('result-score-card').classList.add('hidden');
+            
+            // Reset Progress
+            updateProgress();
+
+            // Scroll back to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
